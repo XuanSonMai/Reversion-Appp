@@ -4,17 +4,17 @@ export const userColumns = [
         field: 'user',
         headerName: 'User',
         width: 230,
+        img: [
+            'https://kynguyenlamdep.com/wp-content/uploads/2022/06/anh-gai-xinh-cuc-dep.jpg',
+            'https://icdn.dantri.com.vn/thumb_w/640/2020/12/16/ngam-dan-hot-girl-xinh-dep-noi-bat-nhat-nam-2020-docx-1608126694049.jpeg',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiiKrCa3Qw7-51XCIhUJPjdW1AFP--qyTz_Q&usqp=CAU',
+        ],
         renderCell: (params) => {
+            const randomNum = Math.floor(Math.random() * userColumns[1].img.length);
+
             return (
                 <div className="cellWithImg">
-                    <img
-                        className="cellImg"
-                        src={
-                            params.row.img ||
-                            'https://scontent-itm1-1.xx.fbcdn.net/v/t39.30808-6/292466995_5456558047772438_3214686028226935866_n.jpg?stp=cp1_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=0hpGJQCUXiIAX8mm3ME&tn=TiQkjMHCxQ3mfxb3&_nc_ht=scontent-itm1-1.xx&oh=00_AT9WpF437NR-1cznUHQ8QiVgRfrH-z4I_JqhTcvBPkHr3A&oe=63138367'
-                        }
-                        alt="avatar"
-                    />
+                    <img className="cellImg" src={params.row.img || userColumns[1].img[randomNum]} alt="avatar" />
                     {params.row.username}
                 </div>
             );
@@ -40,6 +40,14 @@ export const userColumns = [
         field: 'phone',
         headerName: 'Phone',
         width: 100,
+    },
+    {
+        field: 'status',
+        headerName: 'Status',
+        width: 160,
+        renderCell: (params) => {
+            return <div className={`cellWithSatus ${params.row.status}`}>{params.row.status}</div>;
+        },
     },
 ];
 
