@@ -9,7 +9,6 @@ import axios from 'axios';
 const Datatable = ({ columns }) => {
     const location = useLocation();
     const path = location.pathname.split('/')[1];
-    console.log(path);
 
     const [list, setList] = useState();
     const { data, loading, error } = useFetch(`http://localhost:8800/api/${path}`);
@@ -46,10 +45,8 @@ const Datatable = ({ columns }) => {
     return (
         <div className="datatable">
             <div className="datatableTitle">
-                Add New User
-                <Link to="/users/new" className="link">
-                    Add New
-                </Link>
+                {path}
+                <Link to={`/${path}/new    `}>Add New</Link>
             </div>
             <DataGrid
                 className="datagrid"

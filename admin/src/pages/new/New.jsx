@@ -10,6 +10,7 @@ const New = ({ inputs, title }) => {
     const [info, setInfo] = useState({});
 
     const handleChange = (e) => {
+        // e.target.value that value of selected input tag , so we have to add value field
         setInfo((pre) => ({ ...pre, [e.target.id]: e.target.value }));
     };
 
@@ -20,7 +21,11 @@ const New = ({ inputs, title }) => {
         data.append('upload_preset', 'upload');
         try {
             const uploadRes = await axios.post('https://api.cloudinary.com/v1_1/lamadev/image/upload', data);
-            console.log(uploadRes.data);
+
+            const { url } = uploadRes.data;
+
+            const newUser = { ...info, img: url };
+            console.log(newUser);
         } catch (error) {
             console.log(error);
         }
@@ -59,12 +64,19 @@ const New = ({ inputs, title }) => {
                                 />
                             </div>
 
-                            {inputs.map((input) => (
-                                <div className="formInput" key={input.id}>
-                                    <label>{input.label}</label>
-                                    <input onChange={handleChange} type={input.type} placeholder={input.placeholder} />
-                                </div>
-                            ))}
+                            {inputs.map((input) => {
+                                return (
+                                    <div className="formInput" key={input.id}>
+                                        <label>{input.label}</label>
+                                        <input
+                                            onChange={handleChange}
+                                            id={input.id}
+                                            type={input.type}
+                                            placeholder={input.placeholder}
+                                        />
+                                    </div>
+                                );
+                            })}
                             <button onClick={handleClick}>Send</button>
                         </form>
                     </div>

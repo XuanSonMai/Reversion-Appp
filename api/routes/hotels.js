@@ -15,7 +15,7 @@ const router = express.Router();
 
 //CREAT
 
-router.post('/', verifyAdmin, createHotel);
+router.post('/', createHotel);
 
 //UPDATE
 router.put('/:id', verifyAdmin, updatedHotel);
