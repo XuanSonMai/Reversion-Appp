@@ -14,6 +14,8 @@ const NewHotel = () => {
     const [info, setInfo] = useState({});
     const [rooms, setRooms] = useState([]);
 
+    console.log('object values', Object.values({ name: 'son', age: 18 }));
+
     const { data, loading, error } = useFetch(`http://localhost:8800/api/rooms`);
     console.log('info', info);
     const handleChange = (e) => {
@@ -48,7 +50,7 @@ const NewHotel = () => {
                 photos: files,
             };
             console.log('newHotel', newhotel);
-            await axios.post('http://localhost:8800/api/hotels', newhotel);
+            await axios.get('http://localhost:8800/api/hotels', newhotel);
         } catch (err) {
             console.log(err);
         }
